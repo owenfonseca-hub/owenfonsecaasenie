@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Owen Fonseca Asenie — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#ffffff;
+    --ink:#141210;
+    --ink-soft:#5a5450;
+    --brown:#8a6fc9;
+    --brown-deep:#6d54a8;
+    --brown-tint:#f4f1fb;
+    --border:#eae6f5;
+    --gray-text:#6b6b6b;
+    --radius:14px;
+    --cream:#faf5ec;
+    --cream-deep:#f3ead9;
+    --hero-purple-1:#efe6fb;
+    --hero-purple-2:#f9f5ff;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter', sans-serif;
+    color:var(--ink);
+    background:var(--cream);
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Space Grotesk', sans-serif;
+    letter-spacing:-0.02em;
+  }
+  .mono{
+    font-family:'JetBrains Mono', monospace;
+  }
+  a{color:inherit; text-decoration:none;}
+  .container{
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  /* ===== NAVBAR ===== */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(250,245,236,0.85);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--border);
+  }
+  nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 0;
+  }
+  .logo{
+    display:flex; align-items:center; gap:9px;
+    font-weight:700; font-size:18px;
+  }
+  .logo-mark{
+    width:28px; height:28px;
+    display:flex; align-items:center; justify-content:center;
+    background:var(--brown);
+    color:#fff;
+    border-radius:8px;
+    font-size:12px;
+    font-weight:700;
+  }
+  .nav-links{
+    display:flex; gap:34px;
+    font-size:14.5px;
+    color:var(--ink-soft);
+  }
+  .nav-links a{ transition:color .2s ease; }
+  .nav-links a:hover{ color:var(--ink); }
+
+  .btn{
+    display:inline-flex; align-items:center; gap:6px;
+    padding:11px 22px;
+    border-radius:100px;
+    font-size:14px;
+    font-weight:600;
+    cursor:pointer;
+    transition:all .2s ease;
+    white-space:nowrap;
+  }
+  .btn-dark{
+    background:var(--ink);
+    color:#fff;
+    border:1px solid var(--ink);
+  }
+  .btn-dark:hover{ background:var(--brown-deep); border-color:var(--brown-deep); }
+  .btn-outline{
+    background:#fff;
+    color:var(--ink);
+    border:1px solid var(--border);
+  }
+  .btn-outline:hover{ border-color:var(--brown); color:var(--brown); }
+
+  /* ===== HERO ===== */
+  .hero{
+    padding:90px 0 70px;
+    background:linear-gradient(180deg, var(--hero-purple-1) 0%, var(--hero-purple-2) 65%, var(--cream) 100%);
+    border-bottom:1px solid var(--border);
+  }
+  .hero .hero-grid{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:56px;
+    align-items:center;
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:9px 18px;
+    border-radius:100px;
+    background:var(--brown-tint);
+    border:1px solid #e0d8f0;
+    color:var(--brown);
+    font-size:15px;
+    font-weight:600;
+    margin-bottom:28px;
+  }
+  .hero h1{
+    font-size:54px;
+    line-height:1.1;
+    font-weight:700;
+  }
+  .hero h1 .accent{ color:var(--brown); }
+  .hero p.sub{
+    max-width:520px;
+    margin:26px 0 0;
+    font-size:17.5px;
+    line-height:1.6;
+    color:var(--gray-text);
+  }
+  .hero-ctas{
+    display:flex; gap:14px;
+    margin-top:36px;
+  }
+  .hero-photo{
+    position:relative;
+  }
+  .hero-photo img{
+    width:100%;
+    aspect-ratio: 4 / 5;
+    object-fit:cover;
+    border-radius:20px;
+    display:block;
+    box-shadow:0 30px 60px -30px rgba(80,60,140,0.35);
+  }
+  .hero-photo-card{
+    position:absolute;
+    left:-24px;
+    bottom:-24px;
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:16px 20px;
+    box-shadow:0 20px 40px -24px rgba(80,60,140,0.25);
+    max-width:270px;
+  }
+  .hero-photo-card .name{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:700;
+    font-size:15px;
+    margin-bottom:4px;
+  }
+  .hero-photo-card .role{
+    font-size:12.5px;
+    color:var(--brown);
+    font-weight:600;
+    margin-bottom:8px;
+  }
+  .hero-photo-card .bio{
+    font-size:12.5px;
+    color:var(--gray-text);
+    line-height:1.5;
+  }
+
+  /* ===== SERVICES ===== */
+  .services{
+    padding:110px 0 40px;
+    text-align:center;
+  }
+  .services h2{
+    font-size:38px;
+    margin-top:20px;
+  }
+  .services p.sub{
+    max-width:520px;
+    margin:18px auto 0;
+    color:var(--gray-text);
+    font-size:16px;
+    line-height:1.6;
+  }
+  .cards-3{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:22px;
+    margin-top:56px;
+    text-align:left;
+  }
+  .card{
+    background:#ffffff;
+    border:1px solid rgba(138,111,201,0.18);
+    border-radius:var(--radius);
+    padding:30px;
+    transition:border-color .25s ease, box-shadow .25s ease, transform .25s ease;
+    box-shadow:0 14px 32px -26px rgba(80,60,140,0.12);
+  }
+  .card:hover{
+    border-color:rgba(138,111,201,0.4);
+    box-shadow:0 24px 48px -30px rgba(80,60,140,0.18);
+    transform:translateY(-3px);
+  }
+  .card-icon{
+    width:42px; height:42px;
+    border-radius:12px;
+    background:rgba(138,111,201,0.06);
+    color:var(--brown);
+    display:flex; align-items:center; justify-content:center;
+    margin-bottom:20px;
+    font-weight:700;
+    font-size:16px;
+  }
+  .card h3{
+    font-size:18px;
+    margin-bottom:9px;
+  }
+  .card p{
+    font-size:14.5px;
+    color:var(--gray-text);
+    line-height:1.55;
+  }
+
+  .section-label{
+    font-size:13px;
+    font-weight:600;
+    color:var(--brown);
+    text-align:left;
+    margin:44px 0 18px;
+  }
+
+  /* ===== FEATURE GRID ===== */
+  .feature-section{
+    background:var(--cream-deep);
+    padding:90px 0;
+    margin-top:90px;
+  }
+  .grid-2{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:22px;
+  }
+  .feature-card{
+    background:#ffffff;
+    border:1px solid rgba(138,111,201,0.18);
+    border-radius:var(--radius);
+    padding:34px;
+    transition:border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+    box-shadow:0 14px 32px -26px rgba(80,60,140,0.12);
+  }
+  .feature-card:hover{
+    border-color:rgba(138,111,201,0.4);
+    box-shadow:0 22px 44px -30px rgba(80,60,140,0.18);
+    transform:translateY(-2px);
+  }
+  .tag-eyebrow{
+    display:inline-flex; align-items:center; gap:7px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    color:var(--brown);
+    margin-bottom:16px;
+  }
+  .feature-card h3{ font-size:19px; margin-bottom:10px; }
+  .feature-card p{ font-size:14.5px; color:var(--gray-text); line-height:1.6; margin-bottom:18px;}
+  .feature-card .status{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11.5px;
+    font-weight:600;
+    color:var(--brown-deep);
+  }
+  .view-more{
+    display:inline-flex; align-items:center; gap:6px;
+    font-size:13.5px; font-weight:600;
+    transition:gap .2s ease;
+  }
+  .view-more:hover{ gap:10px; color:var(--brown); }
+
+  .feature-wide{
+    margin-top:22px;
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:40px;
+    display:grid;
+    grid-template-columns:1fr 340px;
+    gap:40px;
+    align-items:center;
+  }
+  .feature-wide h3{ font-size:22px; margin-bottom:10px; }
+  .feature-wide p{ font-size:15px; color:var(--gray-text); line-height:1.6; margin-bottom:22px; max-width:440px;}
+  .contact-card{
+    max-width:760px;
+    margin:0 auto;
+    grid-template-columns:1fr !important;
+    background:#f5f0ff;
+    border:1px solid rgba(138,111,201,0.28);
+    box-shadow:0 24px 60px -30px rgba(80,60,140,0.18);
+    text-align:center;
+  }
+  .contact-card > div{padding:0;}
+  .contact-card h3{margin-bottom:14px;}
+  .contact-card p{
+    margin:0 auto 24px;
+    max-width:580px;
+    text-align:center;
+  }
+  .contact-terminal{
+    background:#fff;
+    border:1px solid rgba(138,111,201,0.22);
+    border-radius:18px;
+    padding:28px 24px;
+  }
+  .contact-terminal div{
+    margin-bottom:12px;
+    color:var(--ink-soft);
+    font-size:14px;
+  }
+  .contact-terminal div:last-child{margin-bottom:0;}
+  .terminal{
+    background:#faf9fd;
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:16px 18px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:12.5px;
+    color:#5a5450;
+    line-height:2;
+  }
+  .terminal span{ color:var(--brown); }
+
+  .code-panel{
+    background:var(--ink);
+    border-radius:12px;
+    padding:22px;
+    height:260px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    color:#c9c2dd;
+    line-height:1.9;
+    position:relative;
+    overflow:hidden;
+    box-shadow:0 30px 60px -25px rgba(80,60,140,0.28);
+  }
+  .code-panel::before{
+    content:'';
+    position:absolute;
+    top:-40%; left:-20%;
+    width:220px; height:220px;
+    background:radial-gradient(circle, rgba(120,90,190,0.5), transparent 70%);
+    filter:blur(10px);
+  }
+  .code-panel .kw{ color:#9c7fd8; }
+  .code-panel .str{ color:#a9c98b; }
+  .code-panel .cm{ color:#8b859c; }
+
+  /* ===== FOOTER ===== */
+  footer{
+    padding:70px 0 40px;
+    border-top:1px solid var(--border);
+    margin-top:100px;
+  }
+  .footer-top{
+    display:grid;
+    grid-template-columns:1.4fr 1fr 1fr 1fr;
+    gap:40px;
+  }
+  .footer-brand p{
+    color:var(--gray-text);
+    font-size:14px;
+    margin-top:14px;
+    max-width:260px;
+    line-height:1.6;
+  }
+  .footer-col h4{
+    font-size:13.5px;
+    margin-bottom:16px;
+    font-family:'Inter', sans-serif;
+    font-weight:600;
+  }
+  .footer-col a{
+    display:block;
+    font-size:13.5px;
+    color:var(--gray-text);
+    margin-bottom:11px;
+    transition:color .2s ease;
+  }
+  .footer-col a:hover{ color:var(--brown); }
+  .footer-bottom{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:16px;
+    flex-wrap:wrap;
+    text-align:center;
+    margin-top:60px;
+    padding-top:26px;
+    border-top:1px solid var(--border);
+    font-size:13px;
+    color:var(--gray-text);
+  }
+  .footer-bottom a{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    color:var(--gray-text);
+    font-weight:600;
+    transition:color .2s ease;
+  }
+  .footer-bottom a:hover{ color:var(--brown); }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 860px){
+    .nav-links{ display:none; }
+    .hero .hero-grid{ grid-template-columns:1fr; }
+    .hero h1{ font-size:36px; }
+    .hero p.sub{ font-size:15.5px; }
+    .hero-photo-card{ position:static; margin-top:16px; max-width:none; }
+    .cards-3{ grid-template-columns:1fr; }
+    .grid-2{ grid-template-columns:1fr; }
+    .feature-wide{ grid-template-columns:1fr; }
+    .footer-top{ grid-template-columns:1fr 1fr; row-gap:34px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <nav>
+      <div class="logo">
+        <div class="logo-mark">OA</div>
+        Owen Fonseca Asenie
+      </div>
+      <div class="nav-links">
+        <a href="#habilidades">Habilidades</a>
+        <a href="#educacion">Educación</a>
+        <a href="#nosotros">Sobre mi</a>
+        <a href="#contacto">Formas de Contacto</a>
+      </div>
+      <a href="#contacto" class="btn btn-dark">Contactar</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <h1>Estudiante de programación<br>construyendo <span class="accent">su camino en el desarrollo web.</span></h1>
+        <p class="sub">Soy una persona proactiva y responsable, con mucha imaginación para transformar ideas simples en proyectos concretos. Hoy estoy aprendiendo a programar y a construir soluciones digitales, un proyecto a la vez.</p>
+        <div class="hero-ctas">
+          <a href="#contacto" class="btn btn-dark">Contactar</a>
+          <a href="https://github.com/monetcreatorsdev-arch?tab=repositories" target="_blank" rel="noopener" class="btn btn-outline">Ver mi GitHub</a>
+        </div>
+      </div>
+      <div class="hero-photo">
+        <img src="https://i.pravatar.cc/700?img=13" alt="Owen Fonseca Asenie">
+        <div class="hero-photo-card">
+          <div class="name">Owen Fonseca Asenie</div>
+          <div class="role">Estudiante · Río Tercero, Córdoba</div>
+          <div class="bio">Estudiante de la Tecnicatura en Desarrollo de Aplicaciones Multiplataforma, Universidad Nacional de Río Tercero (Córdoba).</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="habilidades">
+  <div class="container">
+    <div class="eyebrow mono">[ HABILIDADES ]</div>
+    <h2>Tecnologías con las que trabajo</h2>
+    <p class="sub">Todavía estoy formándome, pero esto es lo que ya vengo usando en clases y en proyectos propios.</p>
+
+    <div class="cards-3">
+      <div class="card">
+        <div class="card-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 4 4 8l4 4M16 4l4 4-4 4M14 3l-4 18"/></svg>
+        </div>
+        <h3>HTML</h3>
+        <p>Estructura y semántica: la base de todo lo que construyo para la web.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 3h16l-1.5 16L12 21l-6.5-2L4 3z"/><path d="M8 8h8M8 12h7M9 16h6"/></svg>
+        </div>
+        <h3>CSS</h3>
+        <p>Estilos, layout y diseño responsive para que cada sitio se vea bien en cualquier pantalla.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 3a3 3 0 0 0-3 3v3a2 2 0 0 1-2 2 2 2 0 0 1 2 2v3a3 3 0 0 0 3 3M16 3a3 3 0 0 1 3 3v3a2 2 0 0 0 2 2 2 2 0 0 0-2 2v3a3 3 0 0 1-3 3"/></svg>
+        </div>
+        <h3>JavaScript</h3>
+        <p>Interactividad y lógica del lado del cliente para que las páginas cobren vida.</p>
+      </div>
+    </div>
+
+    <div class="section-label mono">[ HERRAMIENTAS ]</div>
+    <div class="grid-2">
+      <div class="feature-card">
+        <div class="tag-eyebrow">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 12.6 11.4.5a1.7 1.7 0 0 0-2.4 0L6.7 2.8l2.9 2.9a2 2 0 0 1 2.5 2l2.7 2.7a2 2 0 1 1-1.2 1.2l-2.5-2.5v6.6a2 2 0 1 1-1.7 0V8.8a2 2 0 0 1-1-2.6L5.9 4l-5.4 5.4a1.7 1.7 0 0 0 0 2.4l12.1 12.1a1.7 1.7 0 0 0 2.4 0l8.5-8.5a1.7 1.7 0 0 0 0-2.8z"/></svg>
+          control de versiones
+        </div>
+        <h3>Git</h3>
+        <p>Registro cada avance de mis proyectos con commits claros, para poder volver atrás si algo sale mal.</p>
+      </div>
+      <div class="feature-card">
+        <div class="tag-eyebrow">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.8.1-.7.1-.7 1.2.1 1.9 1.3 1.9 1.3 1.1 1.9 2.9 1.3 3.6 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.4-1.3-5.4-5.9 0-1.3.5-2.4 1.3-3.2-.1-.3-.6-1.5.1-3.2 0 0 1-.3 3.4 1.2a11.5 11.5 0 0 1 6.2 0c2.4-1.6 3.4-1.2 3.4-1.2.7 1.7.2 2.9.1 3.2.8.8 1.3 1.9 1.3 3.2 0 4.6-2.7 5.6-5.4 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3z"/></svg>
+          repositorios
+        </div>
+        <h3>GitHub</h3>
+        <p>Ahí subo y organizo mis proyectos, para tenerlos disponibles y mostrar en qué estoy trabajando.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="educacion">
+  <div class="container">
+    <div class="eyebrow mono">[ EDUCACIÓN ]</div>
+    <h2>Mi formación hasta ahora</h2>
+    <p class="sub">Este espacio se va a ir completando con nuevos cursos, prácticas o experiencias a medida que avance.</p>
+
+    <div class="grid-2">
+      <div class="feature-card">
+        <div class="tag-eyebrow">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20V10M18 20V4M6 20v-4"/></svg>
+          2026
+        </div>
+        <h3>Tecnicatura en Desarrollo de Aplicaciones Multiplataforma</h3>
+        <p>Universidad Nacional de Río Tercero (UNRT) — Córdoba. Formación técnica enfocada en programación, bases de datos y desarrollo de software para distintas plataformas.</p>
+        <span class="status">● en curso</span>
+      </div>
+      <div class="feature-card">
+        <div class="tag-eyebrow">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          2022 — 2026
+        </div>
+        <h3>Secundario — Escuela Experimental ProA</h3>
+        <p>Énfasis en Programación. Título obtenido: Bachiller Informático. Primer acercamiento formal a la lógica de programación y al pensamiento computacional.</p>
+        <span class="status">● finalizado</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="nosotros">
+  <div class="container">
+    <div class="eyebrow mono">[ SOBRE MI ]</div>
+    <h2>Conocé un poco más de mí</h2>
+    <p class="sub">Soy Owen Fonseca Asenie, estudiante de la Tecnicatura en Desarrollo de Aplicaciones Multiplataforma en la UNRT (Córdoba), con secundario en la Escuela Experimental ProA con énfasis en programación. Vivo en Río Tercero, Córdoba, Argentina.</p>
+
+    <div class="grid-2">
+      <div class="feature-card">
+        <div class="tag-eyebrow">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20V10M18 20V4M6 20v-4"/></svg>
+          proactividad
+        </div>
+        <h3>Un paso adelante siempre</h3>
+        <p>No me gusta quedarme esperando a que las cosas pasen: investigo, pruebo y avanzo por mi cuenta, buscando siempre cómo darle más valor a lo que estoy haciendo.</p>
+        <a href="#" class="view-more">Conoce más →</a>
+      </div>
+      <div class="feature-card">
+        <div class="tag-eyebrow">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          responsabilidad y detalle
+        </div>
+        <h3>Compromiso e imaginación</h3>
+        <p>Soy responsable con lo que me comprometo a hacer y le pongo mucha atención al detalle. Le sumo imaginación a cada proyecto, incluso a los más simples, porque ahí está la diferencia entre algo funcional y algo que se disfruta usar.</p>
+        <div class="terminal">
+          <div><span>•</span> Aprendo haciendo</div>
+          <div><span>•</span> Atención al detalle en cada entrega</div>
+          <div><span>•</span> Curiosidad por aprender cosas nuevas</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="contacto">
+  <div class="container">
+    <div class="eyebrow mono">[ FORMAS DE CONTACTO ]</div>
+    <h2>Hablemos</h2>
+    <p class="sub">Estoy en Río Tercero, Córdoba, y disponible para sumarme a proyectos, prácticas o simplemente charlar sobre código.</p>
+
+    <div class="feature-wide contact-card">
+      <div>
+        <h3>Owen Fonseca Asenie</h3>
+        <p>Escribime para contarme sobre tu proyecto, una práctica o cualquier consulta. Respondo rápido.</p>
+        <div class="terminal contact-terminal">
+          <div><span>•</span> Email: <strong>owen.fonseca@alumno.unrt.edu.ar</strong></div>
+          <div><span>•</span> GitHub: <strong>github.com/monetcreatorsdev-arch</strong></div>
+          <div><span>•</span> Ubicación: <strong>Río Tercero, Córdoba, Argentina</strong></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="feature-section">
+  <div class="container">
+    <div class="grid-2">
+      <div class="feature-card">
+        <div class="tag-eyebrow">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20V10M18 20V4M6 20v-4"/></svg>
+          forma de trabajar
+        </div>
+        <h3>Aprendo haciendo</h3>
+        <p>Prefiero probar, romper y volver a armar el código antes que quedarme solo con la teoría.</p>
+        <a href="#" class="view-more">Ver más →</a>
+      </div>
+      <div class="feature-card">
+        <div class="tag-eyebrow">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/></svg>
+          forma de trabajar
+        </div>
+        <h3>Mejora constante</h3>
+        <p>Reviso cada proyecto terminado buscando una versión un poco más prolija que la anterior.</p>
+        <a href="#" class="view-more">Ver más →</a>
+      </div>
+    </div>
+
+    <div class="feature-wide">
+      <div>
+        <div class="tag-eyebrow">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          próximos pasos
+        </div>
+        <h3>Hacia dónde voy</h3>
+        <p>Estos son los objetivos que me propongo mientras avanzo en mi formación como desarrollador.</p>
+        <div class="terminal">
+          <div><span>•</span> Sumar experiencia real en proyectos</div>
+          <div><span>•</span> Profundizar en JavaScript</div>
+          <div><span>•</span> Publicar más proyectos en GitHub</div>
+        </div>
+      </div>
+      <div class="code-panel">
+        <div><span class="cm">// proyecto.js</span></div>
+        <div><span class="kw">const</span> owen = <span class="kw">await</span> aprender();</div>
+        <div>owen.practicar();</div>
+        <div>owen.publicarEn(<span class="str">"github.com"</span>);</div>
+        <div><span class="cm">// un poco más cerca cada día</span></div>
+        <div><span class="kw">await</span> owen.seguirCreciendo();</div>
+        <div><span class="cm">✓ commit realizado</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo">
+          <div class="logo-mark">OA</div>
+          Owen Fonseca Asenie
+        </div>
+        <p>Estudiante de programación, aprendiendo a construir experiencias digitales, paso a paso.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Habilidades</h4>
+        <a href="#habilidades">HTML</a>
+        <a href="#habilidades">CSS</a>
+        <a href="#habilidades">JavaScript</a>
+      </div>
+      <div class="footer-col">
+        <h4>Navegación</h4>
+        <a href="#educacion">Educación</a>
+        <a href="#nosotros">Sobre mi</a>
+      </div>
+      <div class="footer-col">
+        <h4>Conectar</h4>
+        <a href="https://github.com/monetcreatorsdev-arch?tab=repositories" target="_blank" rel="noopener">GitHub</a>
+        <a href="mailto:owen.fonseca@alumno.unrt.edu.ar">Email</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Owen Fonseca Asenie. Todos los derechos reservados.</span>
+      <a href="https://github.com/monetcreatorsdev-arch?tab=repositories" target="_blank" rel="noopener">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.8.1-.7.1-.7 1.2.1 1.9 1.3 1.9 1.3 1.1 1.9 2.9 1.3 3.6 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.4-1.3-5.4-5.9 0-1.3.5-2.4 1.3-3.2-.1-.3-.6-1.5.1-3.2 0 0 1-.3 3.4 1.2a11.5 11.5 0 0 1 6.2 0c2.4-1.6 3.4-1.2 3.4-1.2.7 1.7.2 2.9.1 3.2.8.8 1.3 1.9 1.3 3.2 0 4.6-2.7 5.6-5.4 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3z"/></svg>
+        GitHub
+      </a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
